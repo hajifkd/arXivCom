@@ -1,0 +1,12 @@
+{
+  "name": "arXivCom",
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "description": "Add comment feature to arXiv.org",
+  "content_scripts" : [
+    {
+      "matches": ["http://arxiv.org/abs/*"],
+      "js": ["jquery-2.2.1.min.js", "arXiv.js"]
+    }
+  ]
+}
