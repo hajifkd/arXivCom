@@ -21,7 +21,6 @@ function init() {
     let key = t;
     let dfd = $.get(url).then(function(data) {
       templates[key] = Hogan.compile(data);
-      console.log(templates);
     });
     callList.push(dfd);
   }
