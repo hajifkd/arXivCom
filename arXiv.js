@@ -2,18 +2,19 @@
 
 var browser = chrome;
 
-var style = document.createElement('link');
-style.rel = 'stylesheet';
-style.type = 'text/css';
-style.href = browser.extension.getURL('css/arXiv_style.css');
-(document.head||document.documentElement).appendChild(style);
-
 var templateDir = 'templates/';
 var templateNames = ['comment', 'comment_box'];
 var templateExtension = '.templ';
 var templates = {};
 
 function _start() {
+  // Add css
+  let style = document.createElement('link');
+  style.rel = 'stylesheet';
+  style.type = 'text/css';
+  style.href = browser.extension.getURL('css/arXiv_style.css');
+  (document.head||document.documentElement).appendChild(style);
+  
   let promiseList = [];
   
   for (let t of templateNames) {
