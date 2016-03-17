@@ -15,6 +15,7 @@ var templates = {};
 
 function init() {
   let callList = [];
+  
   for (let t of templateNames) {
     let url = browser.extension.getURL(templateDir + t + templateExtension);
     let key = t;
