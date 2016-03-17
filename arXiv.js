@@ -2,18 +2,37 @@
 
 var browser = chrome;
 
-var template = `<p>%s</p>`;
+var style = document.createElement('link');
+style.rel = 'stylesheet';
+style.type = 'text/css';
+style.href = browser.extension.getURL('css/arXiv_style.css');
+(document.head||document.documentElement).appendChild(style);
 
-$(function() {
-  var title = $('h1.title')[0].innerText;
-  var authors = $('div.authors')[0].innerText.split(',');
-  $("div.endorsers").after(`<div class='comment metatable'>
-  <h3>Comments on <span class='ctitle'>${title}</span></h3>
-  <form>
-    <textarea>some text</textarea>
-  </form>
-</div>`);
-console.log($("div.endorsers"));
-  console.log(title);
-  console.log(authors);
-});
+var templateDir = 'templates/';
+var templateNames = ['comment', 'comment_box'];
+var templateExtension = '.templ';
+var templates = {};
+
+function init() {
+  let callList = [];
+  for (let t of templateNames) {
+    let url = browser.extension.getURL(templateDir + t + templateExtension);
+    let key = t;
+    let dfd = $.get(url).then(function(data) {
+      templates[key] = Hogan.compile(data);
+      console.log(templates);
+    });
+    callList.push(dfd);
+  }
+  
+  $.when.apply($, callList).done(main);
+}
+
+function main() {
+  let title = $('h1.title')[0].innerText;
+  let authors = $('div.authors')[0].innerText.split(',');
+  let commentBox = templates['comment_box'];
+  $("div.endorsers").after(commentBox.render({title: title}));
+}
+
+$(init);

@@ -1,0 +1,8 @@
+.commentbox {
+  font-size: 90%;
+  margin: 0 0 30px 20px;
+}
+
+.commentbox .ctitle {
+  font-style: italic;
+}
