@@ -14,18 +14,18 @@ var templateExtension = '.templ';
 var templates = {};
 
 function _start() {
-  let callList = [];
+  let promiseList = [];
   
   for (let t of templateNames) {
     let url = browser.extension.getURL(templateDir + t + templateExtension);
     let key = t;
-    let dfd = $.get(url).then(data => {
+    let promise = Promise.resolve($.get(url)).then(data => {
       templates[key] = Hogan.compile(data);
     });
-    callList.push(dfd);
+    promiseList.push(promise);
   }
   
-  $.when.apply($, callList).done(main);
+  Promise.all(promiseList).then(main);
 }
 
 function main() {
