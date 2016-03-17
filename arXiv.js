@@ -13,13 +13,13 @@ var templateNames = ['comment', 'comment_box'];
 var templateExtension = '.templ';
 var templates = {};
 
-function init() {
+function _start() {
   let callList = [];
   
   for (let t of templateNames) {
     let url = browser.extension.getURL(templateDir + t + templateExtension);
     let key = t;
-    let dfd = $.get(url).then(function(data) {
+    let dfd = $.get(url).then(data => {
       templates[key] = Hogan.compile(data);
     });
     callList.push(dfd);
@@ -35,4 +35,4 @@ function main() {
   $("div.endorsers").after(commentBox.render({title: title}));
 }
 
-$(init);
+$(_start);
