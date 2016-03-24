@@ -9,5 +9,6 @@
       "js": ["libs/jquery-2.2.1.min.js", "libs/hogan-3.0.1.js", "arXiv.js"]
     }
   ],
-  "web_accessible_resources": ["css/arXiv_style.css", "templates/*"]
+  "web_accessible_resources": ["css/arXiv_style.css", "templates/*"],
+  "permissions": ["http://192.168.56.100:8000/*"]
 }

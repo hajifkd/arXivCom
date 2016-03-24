@@ -6,3 +6,28 @@
 .commentbox .ctitle {
   font-style: italic;
 }
+
+div#comments {
+  margin-bottom: 20px;
+  margin-left: 10px;
+}
+
+span.created_at {
+  color: dimgray;
+}
+
+span.comment_id {
+  color: darkblue;
+}
+
+div.comment_text {
+  font-size: 130%;
+  margin-left: 20px;
+  margin-bottom: 10px;
+  margin-top: 5px;
+}
+
+div.comment_text pre {
+  font-family: inherit!important;
+  margin: 0 0 0 0;
+}
